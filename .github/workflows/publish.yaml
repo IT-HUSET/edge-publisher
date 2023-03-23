@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-            docker images ls
+            docker image ls
             docker push familyGuy.azurecr.io/classifier:v2
       - name: Azure CLI script
         uses: azure/CLI@v1
