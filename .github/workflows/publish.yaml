@@ -6,7 +6,7 @@ jobs:
   Publish-To-Edge:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Fetching published model"
+      - run: az upgrade
       - name: Azure Login
         uses: azure/login@v1
         with:
