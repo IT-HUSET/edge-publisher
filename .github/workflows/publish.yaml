@@ -16,9 +16,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: pip install azure-cognitiveservices-vision-customvision
       - run: python fetch_model.py
-      - run: ls
       - run: unzip exported_model.zip
-      - run: ls
       -
         name: Set up QEMU dependency
         uses: docker/setup-qemu-action@v1
@@ -31,7 +29,8 @@ jobs:
           tags: familyGuy.azurecr.io/classifier:v2
           platforms: linux/armhf
           context: .
-          push: false
+          push: false,
+          load: true
       - name: 'Login'
         uses: azure/docker-login@v1
         with:
