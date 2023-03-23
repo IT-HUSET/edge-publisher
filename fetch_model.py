@@ -1,7 +1,6 @@
 import time, requests
 from azure.cognitiveservices.vision.customvision.training import CustomVisionTrainingClient
 from msrest.authentication import ApiKeyCredentials
-from 
 
 ENDPOINT = "https://svantescustomvision.cognitiveservices.azure.com/"
 training_key = "bbfc90b028f5449ebefe8495f6203460"
