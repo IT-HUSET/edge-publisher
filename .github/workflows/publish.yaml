@@ -15,7 +15,7 @@ jobs:
       - run: pip install azure-cognitiveservices-vision-customvision
       - run: python fetch_model.py
       - run: ls
-      - run: gunzip exported_model.zip
+      - run: unzip exported_model.zip
       - run: ls
       - name: Azure CLI script
         uses: azure/CLI@v1
