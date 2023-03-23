@@ -32,6 +32,15 @@ jobs:
           platforms: linux/armhf
           context: .
           push: false
+
+      - name: 'Build and push image'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+            docker push familyGuy.azurecr.io/classifier:v2
       - name: Azure CLI script
         uses: azure/CLI@v1
         with:
@@ -39,4 +48,3 @@ jobs:
           inlineScript: |
             az account show
             az storage -h
-            az acr login --name familyGuy.azurecr.io
