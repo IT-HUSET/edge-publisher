@@ -36,6 +36,7 @@ jobs:
         with:
           tags: familyGuy.azurecr.io/classifier:v2
           platforms: linux/armhf
+          context: .
           push: true
       - name: Azure CLI script
         uses: azure/CLI@v1
