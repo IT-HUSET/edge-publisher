@@ -1,12 +1,13 @@
 name: Publish model to edge device
-run-name: ${{ github.actor }} is publishing to edge device<
+run-name: ${{ github.actor }} is publishing to edge device
 on:
   workflow_dispatch:
 jobs:
   Publish-To-Edge:
     runs-on: ubuntu-latest
     steps:
-      - run: az upgrade
+      - name: checkout repo content
+        uses: actions/checkout@v3
       - name: Azure Login
         uses: azure/login@v1
         with:
