@@ -1,5 +1,7 @@
 name: Publish model to edge device
-run-name: ${{ github.actor }} is publishing to edge device
+run-name: ${{ github.actor }} is publishing to edge device<
+on:
+  workflow_dispatch:
 jobs:
   Publish-To-Edge:
     runs-on: ubuntu-latest
