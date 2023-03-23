@@ -23,10 +23,10 @@ export = None
 exports = trainer.get_exports(project_id, iteration_id)
 # Locate the export for this iteration and check its status  
 for e in exports:
-  if e.platform == export.platform and e.flavor == export.flavor:
+  if e.platform == platform and e.flavor == flavor:
     export = e
     break
-  print("Export status: ", export)
+print("Export found: ", export)
     
 # Success, now we can download it
 export_file = requests.get(export.download_uri)
