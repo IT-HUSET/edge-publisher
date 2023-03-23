@@ -31,6 +31,13 @@ jobs:
           context: .
           push: false
           load: true
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az acr login ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            docker push familyGuy.azurecr.io/classifier:v2
       - name: 'Login'
         uses: azure/docker-login@v1
         with:
@@ -38,12 +45,4 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-            docker image ls
-            docker push familyGuy.azurecr.io/classifier:v2
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.30.0
-          inlineScript: |
-            az account show
-            az storage -h
+            docker image ls  
