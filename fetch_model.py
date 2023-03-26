@@ -26,9 +26,15 @@ for e in exports:
   if e.platform == platform and e.flavor == flavor:
     export = e
     break
-print("Export found: ", export)
-    
-# Success, now we can download it
-export_file = requests.get(export.download_uri)
-with open("exported_model.zip", "wb") as file:
+
+if export: 
+  print("Export found: ", export)
+  # Success, now we can download it
+  export_file = requests.get(export.download_uri)
+  with open("exported_model.zip", "wb") as file:
     file.write(export_file.content)
+else:
+  print("Schade, no export found...")
+  raise SystemExit
+    
+
