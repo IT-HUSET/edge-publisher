@@ -48,12 +48,13 @@ jobs:
           registry: familyGuy.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: docker push familyGuy.azurecr.io/classifier:v2
       
-      - name: Push image to ACR
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.30.0
-          inlineScript: |
-            az acr login -n familyGuy
-            docker push familyGuy.azurecr.io/classifier:v2
+      # - name: Push image to ACR
+       # uses: azure/CLI@v1
+       # with:
+        #  azcliversion: 2.30.0
+        #  inlineScript: |
+        #    az acr login -n familyGuy
+        #    docker push familyGuy.azurecr.io/classifier:v2
         
