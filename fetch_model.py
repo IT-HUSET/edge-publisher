@@ -20,7 +20,7 @@ exports = trainer.get_exports(project_id, iteration_id)
 print("Found {} exported models for iter 3".format(len(exports)))
 if not exports:
   export = trainer.export_iteration(project_id, iteration_id, platform, flavor, raw=False)
-  print("Export initial status is {}".format(export.status)
+  print("Export initial status is {}".format(export.status))
                                            
   while (export.status != "Done"):
     print ("Waiting 10 seconds...")
