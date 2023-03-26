@@ -23,6 +23,7 @@ export = None
 exports = trainer.get_exports(project_id, iteration_id)
 # Locate the export for this iteration and check its status  
 for e in exports:
+  print("Looking at exported ai-model {}".format(e))
   if e.platform == platform and e.flavor == flavor:
     export = e
     break
@@ -35,6 +36,6 @@ if export:
     file.write(export_file.content)
 else:
   print("Schade, no export found...")
-  raise SystemExit
+  raise SystemExit(9)
     
 
