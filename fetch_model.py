@@ -22,7 +22,7 @@ flavor = "ARM"
     # time.sleep(10)
 export = None
 exports = trainer.get_exports(project_id, iteration_id)
-print("Found {} exported models".format(len(exports)))
+print("Found {} exported models for iter 2".format(len(exports)))
 # Locate the export for this iteration and check its status  
 for e in exports:
   print("Looking at exported ai-model {}".format(e))
