@@ -10,7 +10,7 @@ jobs:
         name: set docker cli experimental = true
       - name: checkout repo content
         uses: actions/checkout@v3
-      - name: Azure Login
+      - name: Login to Azure using Azure/login@v1
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -31,18 +31,19 @@ jobs:
           context: .
           push: false
           load: true
-      - name: Azure CLI script
+      - name: 'Login to ACR using azure/docker-login@v1'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Push image to ACR
         uses: azure/CLI@v1
         with:
           azcliversion: 2.30.0
           inlineScript: |
             az acr login -n familyGuy
             docker push familyGuy.azurecr.io/classifier:v2
-      - name: 'Login'
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      
       - run: |
             docker image ls  
