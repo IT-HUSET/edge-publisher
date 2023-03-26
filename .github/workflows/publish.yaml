@@ -31,6 +31,10 @@ jobs:
           context: .
           push: false
           load: true
+      
+      - run: |
+            docker image ls
+            
       - name: 'Login to ACR using azure/docker-login@v1'
         uses: azure/docker-login@v1
         with:
@@ -42,8 +46,6 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            az acr login -n familyGuy
+            # az acr login -n familyGuy
             docker push familyGuy.azurecr.io/classifier:v2
-      
-      - run: |
-            docker image ls  
+        
