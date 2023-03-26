@@ -30,7 +30,7 @@ jobs:
           platforms: linux/armhf
           context: .
           push: true
-          load: true
+          load: false
       
       - run: |
             docker image ls
