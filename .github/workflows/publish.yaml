@@ -29,8 +29,8 @@ jobs:
           tags: familyGuy.azurecr.io/classifier:v2
           platforms: linux/armhf
           context: .
-          push: true
-          load: false
+          push: false
+          load: true
       
       - run: |
             docker image ls
