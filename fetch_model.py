@@ -9,20 +9,25 @@ credentials = ApiKeyCredentials(in_headers={"Training-key": training_key})
 trainer = CustomVisionTrainingClient(ENDPOINT, credentials)
 
 project_id = "0794e238-d77a-4528-97cd-b32abf203fb8"
-# iteration_id = "b9715c46-8102-4065-85f5-c6d75ce3dee4" # iter 3
-iteration_id="21322200-86f2-4cf1-9b5c-b217719891c0" # iter 2
+iteration_id = "b9715c46-8102-4065-85f5-c6d75ce3dee4" # iter 3
+# iteration_id="21322200-86f2-4cf1-9b5c-b217719891c0" # iter 2
 platform = "DockerFile"
 flavor = "ARM"
 
-# export = trainer.export_iteration(project_id, iteration_id, platform, flavor, raw=False)
-# print("Export initial status is {}".format(export.status)
-                                           
-#while (export.status != "Done"):
-    # print ("Waiting 10 seconds...")
-    # time.sleep(10)
+
 export = None
 exports = trainer.get_exports(project_id, iteration_id)
-print("Found {} exported models for iter 2".format(len(exports)))
+print("Found {} exported models for iter 3".format(len(exports)))
+if not exports:
+  export = trainer.export_iteration(project_id, iteration_id, platform, flavor, raw=False)
+  print("Export initial status is {}".format(export.status)
+                                           
+  while (export.status != "Done"):
+    print ("Waiting 10 seconds...")
+    time.sleep(10)
+  print("Export is now {}".format(export))
+        
+      
 # Locate the export for this iteration and check its status  
 for e in exports:
   print("Looking at exported ai-model {}".format(e))
